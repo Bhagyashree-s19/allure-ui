@@ -1,0 +1,4 @@
+/Tools/*.zip
+PublishProfiles/
+xmlui/*.*
+/Source/Report Content/website.publishproj
