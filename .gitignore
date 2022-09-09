@@ -2,3 +2,8 @@
 PublishProfiles/
 xmlui/*.*
 /Source/Report Content/website.publishproj
+/Source/Report Content/xmlui/
+/Source/Report Content/sessionapi/
+/Source/Report Content/valueone/
+/Source/Report Content/App_Data/
+.vs/
