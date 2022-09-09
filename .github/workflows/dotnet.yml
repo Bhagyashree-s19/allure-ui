@@ -19,7 +19,7 @@ jobs:
         working-directory: ./
         run: |
             cd Tools/allure-commandline-2.17.3/allure-2.17.3/bin
-            allure.bat generate "../../../../Source/ReportSource/cypress-test/" -o "../../../../Source/Report Content/"             
+            ./allure.bat generate "../../../../Source/ReportSource/cypress-test/" -o "../../../../Source/Report Content/" 
             dir "../../../../Source/Report Content/" 
             
             
