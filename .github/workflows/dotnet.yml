@@ -22,7 +22,7 @@ jobs:
       - name: Copy History Folder
         working-directory: ./
         run: |          
-            Copy-Item "./Source/Report Content/cypress-test/history/*.*" -Destination "./Source/ReportSource/cypress-test/history"  
+            Copy-Item "./Source/Report Content/cypress-test/history/*.*" -Destination "./Source/ReportSource/cypress-test/history" -Recurse 
             
       - name: Commit History Folder
         working-directory: ./
@@ -36,7 +36,7 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: allure-webapp
+          app-name: ${{secrets.APP_NAME}}
           publish-profile: ${{secrets.PUBLISH_PROFILE}}
           package: "Source/Report Content"
           
