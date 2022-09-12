@@ -22,7 +22,7 @@ jobs:
       - name: Copy History Folder
         working-directory: ./
         run: |          
-            Copy-Item "../../../../Source/Report Content/cypress-test/history/*.*" -Destination "../../../../Source/ReportSource/cypress-test/history"  
+            Copy-Item "./Source/Report Content/cypress-test/history/*.*" -Destination "./Source/ReportSource/cypress-test/history"  
             
       - name: Commit History Folder
         working-directory: ./
