@@ -1,0 +1,49 @@
+name: Create New Allure Report
+on: [push, workflow_dispatch]
+
+jobs:
+    
+  generate:
+    name: Generate Report  
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with: 
+            token: ${{secrets.WORKFLOW_PAT}}
+      
+      - name: Create Report Using Allure
+        working-directory: ./
+        run: |
+            cd Tools/allure-commandline-2.17.3/allure-2.17.3/bin
+            ./allure.bat generate "../../../../Source/ReportSource/cypress-test/" -o "../../../../Source/Report Content/cypress-test/" 
+            dir "../../../../Source/Report Content/cypress-test/" 
+            
+      - name: Copy History Folder
+        working-directory: ./
+        run: |          
+            Copy-Item "./Source/Report Content/cypress-test/history/*.*" -Destination "./Source/ReportSource/cypress-test/history" -Recurse 
+            
+      - name: Commit History Folder
+        working-directory: ./
+        run: |             
+             git config --global user.email "bhagyashree.saigal@pricemetrix.com"
+             git config --global user.name "Your Name"                 
+             git add ./Source/ReportSource/cypress-test/history/
+             git commit -m "AUTO COMMIT - Preserving history for repo 'cypress-test'"
+             git push origin    
+             
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{secrets.APP_NAME}}
+          publish-profile: ${{secrets.PUBLISH_PROFILE}}
+          package: "Source/Report Content"
+          
+            
+     
+      
+       
+     
+              
+          
