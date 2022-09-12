@@ -21,7 +21,10 @@ jobs:
             cd Tools/allure-commandline-2.17.3/allure-2.17.3/bin
             ./allure.bat generate "../../../../Source/ReportSource/cypress-test/" -o "../../../../Source/Report Content/cypress-test/" 
             dir "../../../../Source/Report Content/cypress-test/" 
-            
+      - name: Copy History Folder
+        working-directory: ./
+        run: |          
+            Copy-Item "../../../../Source/Report Content/cypress-test/history/*.*" -Destination "../../../../Source/ReportSource/cypress-test/history"             
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
