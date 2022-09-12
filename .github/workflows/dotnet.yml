@@ -1,5 +1,5 @@
 name: Create New Allure Report
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
     
