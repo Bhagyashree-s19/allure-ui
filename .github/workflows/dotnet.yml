@@ -2,7 +2,7 @@ name: Create New Allure Report
 on:
     push:
         paths-ignore:
-            - 'history/**'
+            - 'history/*'
 
 jobs:
     
