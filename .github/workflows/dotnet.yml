@@ -1,5 +1,8 @@
 name: Create New Allure Report
-on: [push,workflow_dispatch]
+on:
+    push:
+        paths-ignore:
+            - 'history/**'
 
 jobs:
     
@@ -13,25 +16,36 @@ jobs:
             token: ${{secrets.WORKFLOW_PAT}}
             clean: true
       
-      - name: Create Report Using Allure
+      - name: Create CommissionCheck API Report Using Allure
         working-directory: ./
         run: |
             cd Tools/allure-commandline-2.17.3/allure-2.17.3/bin
-            ./allure.bat generate "../../../../Source/ReportSource/cypress-test/" -o "../../../../Source/Report Content/cypress-test/" 
-            dir "../../../../Source/Report Content/cypress-test/" 
-            
-      - name: Copy History Folder
+            ./allure.bat generate "../../../../Source/ReportSource/commissioncheckapi/" -o "../../../../Source/Report Content/commissioncheckapi/" 
+                        
+      - name: Copy CommissionCheck API History Folder
         working-directory: ./
         run: |          
-            Copy-Item "./Source/Report Content/cypress-test/history/*.*" -Destination "./Source/ReportSource/cypress-test/history" -Recurse 
+            Copy-Item "./Source/Report Content/commissioncheckapi/history/*.*" -Destination "./Source/ReportSource/commissioncheckapi/history"
+                
+      - name: Create ValueOne Report Using Allure
+        working-directory: ./
+        run: |
+            cd Tools/allure-commandline-2.17.3/allure-2.17.3/bin
+            ./allure.bat generate "../../../../Source/ReportSource/valueone/" -o "../../../../Source/Report Content/valueone/" 
+                    
+      - name: Copy ValueOne History Folder
+        working-directory: ./
+        run: |          
+            Copy-Item "./Source/Report Content/valueone/history/*.*" -Destination "./Source/ReportSource/valueone/history"
             
       - name: Commit History Folder
         working-directory: ./
         run: |             
              git config --global user.email "bhagyashree.saigal@pricemetrix.com"
              git config --global user.name "Your Name"                 
-             git add ./Source/ReportSource/cypress-test/history/
-             git commit -m "AUTO COMMIT - Preserving history for repo 'cypress-test'"
+             git add ./Source/ReportSource/commissioncheckapi/history/
+             git add ./Source/ReportSource/valueone/history/
+             git commit -m "AUTO COMMIT - Preserving history"
              git push origin    
              
       - name: Deploy to Azure WebApp
