@@ -2,8 +2,8 @@ name: Create New Allure Report
 on:
     push:
         paths-ignore:
-          - 'Source/ReportSource/valueone/history/'
-          - 'Source/ReportSource/commissioncheckapi/history/'
+          - 'Source/ReportSource/valueone/history/**'
+          - 'Source/ReportSource/commissioncheckapi/history/**'
 
 jobs:
     
