@@ -4,11 +4,19 @@
       "failed" : 0,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 64,
+      "passed" : 65,
       "unknown" : 0,
-      "total" : 64
+      "total" : 65
     },
     "items" : [ {
+      "uid" : "7509c7add0b09981",
+      "status" : "passed",
+      "time" : {
+        "start" : 1661888394307,
+        "stop" : 1661888396983,
+        "duration" : 2676
+      }
+    }, {
       "uid" : "a3e72757e2f5f0a2",
       "status" : "passed",
       "time" : {
@@ -154,14 +162,6 @@
       }
     }, {
       "uid" : "4073fa5ecf3b670d",
-      "status" : "passed",
-      "time" : {
-        "start" : 1661888394307,
-        "stop" : 1661888396983,
-        "duration" : 2676
-      }
-    }, {
-      "uid" : "b6e4b8ec2ad1d8a6",
       "status" : "passed",
       "time" : {
         "start" : 1661888394307,
